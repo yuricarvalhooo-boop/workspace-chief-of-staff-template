@@ -1,0 +1,89 @@
+#!/bin/sh
+# Versao canonica do hook. O Git nao versiona .git/hooks, entao este arquivo e a fonte
+# e cada computador recebe uma copia. Para instalar (ou reinstalar no outro computador):
+#
+#   cp scripts/hooks/pre-commit .git/hooks/pre-commit
+#
+# Uma limpeza e duas verificacoes somente-leitura:
+#   0. Remove o desktop.ini que o Google Drive cria em .git/refs e .git/logs.
+#   1. Deleção em massa - protege contra commit feito antes de o Drive sincronizar.
+#   2. Doctor - bloqueia so em ERRO (inclui vazamento de segredo); alerta nunca bloqueia.
+
+# ---------------------------------------------------------------------------
+# 0. O Drive poe um desktop.ini de icone em toda pasta. Em .git/refs e .git/logs o
+#    Git o le como referencia e o fetch falha ("bad object refs/desktop.ini").
+#    Com o formato reftable (19/10/2026) o Git nao le mais essas pastas; a limpeza
+#    fica como protecao se o repositorio voltar ao formato files. Nunca bloqueia.
+# ---------------------------------------------------------------------------
+GITDIR=$(git rev-parse --git-dir 2>/dev/null)
+if [ -n "$GITDIR" ]; then
+    for pasta in "$GITDIR/refs" "$GITDIR/logs"; do
+        [ -d "$pasta" ] && find "$pasta" -name desktop.ini -type f -delete 2>/dev/null
+    done
+fi
+
+# ---------------------------------------------------------------------------
+# 1. Protege contra commit feito enquanto o Google Drive ainda sincroniza.
+#    Arquivos que o Drive ainda nao baixou aparecem para o Git como apagados.
+# ---------------------------------------------------------------------------
+LIMITE=50
+deletados=$(git diff --cached --name-only --diff-filter=D | wc -l | tr -d ' ')
+deletados=${deletados:-0}  # vazio so acontece se o git falhar; evita comparacao invalida
+
+if [ "$deletados" -gt "$LIMITE" ]; then
+    echo ""
+    echo "  ============================================================"
+    echo "   COMMIT BLOQUEADO"
+    echo "  ============================================================"
+    echo ""
+    echo "   $deletados arquivos estao marcados como APAGADOS."
+    echo ""
+    echo "   Isso quase sempre quer dizer que o Google Drive ainda nao"
+    echo "   terminou de baixar os arquivos nesta maquina - e nao que"
+    echo "   voce apagou alguma coisa."
+    echo ""
+    echo "   O que fazer:"
+    echo "     1. Abra o Google Drive na barra de tarefas"
+    echo "     2. Espere aparecer 'Atualizado' / icone verde"
+    echo "     3. Tente o commit de novo"
+    echo ""
+    echo "   Se voce apagou esses arquivos de proposito, use o terminal:"
+    echo "     git commit --no-verify -m \"sua mensagem\""
+    echo ""
+    exit 1
+fi
+
+# ---------------------------------------------------------------------------
+# 2. Doctor (~2s). Bloqueia so quando ha ERRO - o doctor ja devolve 1 nesse caso
+#    e 0 quando ha apenas alertas. A auditoria completa (48s) continua manual.
+#    Se o Python nao estiver no PATH deste ambiente, o commit segue sem verificacao:
+#    esta checagem e um ganho, nunca um bloqueio do trabalho.
+# ---------------------------------------------------------------------------
+PY=""
+for candidato in python python3 py; do
+    if command -v "$candidato" >/dev/null 2>&1; then PY="$candidato"; break; fi
+done
+
+if [ -z "$PY" ]; then
+    echo "  [pre-commit] Python nao encontrado no PATH; doctor pulado."
+    exit 0
+fi
+
+saida=$("$PY" scripts/doctor_workspace.py --mode all 2>&1)
+if [ $? -ne 0 ]; then
+    echo ""
+    echo "  ============================================================"
+    echo "   COMMIT BLOQUEADO - doctor encontrou ERRO"
+    echo "  ============================================================"
+    echo ""
+    echo "$saida" | sed 's/^/   /'
+    echo ""
+    echo "   Alertas nunca bloqueiam; isto e erro. Corrija e tente de novo."
+    echo ""
+    echo "   Para commitar assim mesmo, use o terminal:"
+    echo "     git commit --no-verify -m \"sua mensagem\""
+    echo ""
+    exit 1
+fi
+
+exit 0

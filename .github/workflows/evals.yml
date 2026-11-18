@@ -1,0 +1,36 @@
+name: Avaliações de comportamento
+
+# Roda só as avaliações determinísticas (sem modelo, sem segredo, sem custo além dos minutos do runner).
+# Dispara quando mudam as regras, skills, workflows ou o contexto que as avaliações verificam, e sob demanda.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "CLAUDE.md"
+      - "AGENTS.md"
+      - "START.md"
+      - "context/**"
+      - "skills/**"
+      - ".claude/skills/**"
+      - "workflows/**"
+      - "docs/politica-de-perguntas.md"
+      - "evals/**"
+      - "scripts/run_behavior_evals.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deterministicas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Avaliações determinísticas
+        run: python -I scripts/run_behavior_evals.py --mode deterministic

@@ -1,0 +1,302 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "AAAA-MM-DD",
+  "allowed_states": [
+    "experimental",
+    "ativa",
+    "obsoleta",
+    "arquivada"
+  ],
+  "skills": [
+    {
+      "name": "ws-mapear-pessoas",
+      "purpose": "Documentar pessoas e responsabilidades profissionais confirmadas sem criar perfis duplicados.",
+      "triggers": [
+        "mapear pessoa",
+        "confirmar função",
+        "relacionar responsabilidade a processo ou projeto"
+      ],
+      "canonical_source": "skills/ws-mapear-pessoas/SKILL.md",
+      "adapters": [
+        ".claude/skills/ws-mapear-pessoas/SKILL.md"
+      ],
+      "workflow": "workflows/mapear-pessoas.md",
+      "templates": [
+        "templates/pessoa.md"
+      ],
+      "references": [
+        "CLAUDE.md",
+        "MAPEAMENTO.md"
+      ],
+      "origin": {
+        "kind": "modelo",
+        "source": "workspace-template"
+      },
+      "last_reviewed": "2026-09-25",
+      "criticality": "alta",
+      "protection": [
+        "sem-arquivamento-automatico",
+        "mudanca-canonica-exige-autorizacao"
+      ],
+      "status": "ativa",
+      "related_evaluations": [
+        "facts-vs-reports",
+        "owners-deadlines-not-invented"
+      ]
+    },
+    {
+      "name": "ws-mapear-processo",
+      "purpose": "Descobrir e documentar processos, evidências, exceções, sistemas e responsabilidades confirmadas.",
+      "triggers": [
+        "mapear processo",
+        "descobrir fluxo atual",
+        "documentar fluxo futuro"
+      ],
+      "canonical_source": "skills/ws-mapear-processo/SKILL.md",
+      "adapters": [
+        ".claude/skills/ws-mapear-processo/SKILL.md"
+      ],
+      "workflow": "workflows/mapear-processo.md",
+      "templates": [
+        "templates/processo.md",
+        "templates/entrevista.md"
+      ],
+      "references": [
+        "CLAUDE.md",
+        "MAPEAMENTO.md"
+      ],
+      "origin": {
+        "kind": "modelo",
+        "source": "workspace-template"
+      },
+      "last_reviewed": "2026-09-25",
+      "criticality": "alta",
+      "protection": [
+        "sem-arquivamento-automatico",
+        "mudanca-canonica-exige-autorizacao"
+      ],
+      "status": "ativa",
+      "related_evaluations": [
+        "facts-vs-reports",
+        "owners-deadlines-not-invented",
+        "state-evidence-separated"
+      ]
+    },
+    {
+      "name": "ws-planejar-periodo",
+      "purpose": "Preparar prioridades e pautas a partir do contexto e dos compromissos registrados.",
+      "triggers": [
+        "planejar dia",
+        "planejar semana",
+        "preparar pauta de acompanhamento"
+      ],
+      "canonical_source": "skills/ws-planejar-periodo/SKILL.md",
+      "adapters": [
+        ".claude/skills/ws-planejar-periodo/SKILL.md"
+      ],
+      "workflow": "workflows/planejar-periodo.md",
+      "templates": [
+        "templates/planejamento.md"
+      ],
+      "references": [
+        "CLAUDE.md"
+      ],
+      "origin": {
+        "kind": "modelo",
+        "source": "workspace-template"
+      },
+      "last_reviewed": "2026-09-25",
+      "criticality": "media",
+      "protection": [
+        "sem-arquivamento-automatico",
+        "mudanca-canonica-exige-autorizacao"
+      ],
+      "status": "ativa",
+      "related_evaluations": [
+        "owners-deadlines-not-invented",
+        "authorization-bounds"
+      ]
+    },
+    {
+      "name": "ws-processar-reuniao",
+      "purpose": "Processar reuniões e materiais recebidos, levando cada informação ao destino correto.",
+      "triggers": [
+        "processar reunião",
+        "processar entrevista",
+        "processar 1:1",
+        "processar material recebido"
+      ],
+      "canonical_source": "skills/ws-processar-reuniao/SKILL.md",
+      "adapters": [
+        ".claude/skills/ws-processar-reuniao/SKILL.md"
+      ],
+      "workflow": "workflows/processar-reuniao.md",
+      "templates": [
+        "templates/reuniao.md"
+      ],
+      "references": [
+        "CLAUDE.md"
+      ],
+      "origin": {
+        "kind": "modelo",
+        "source": "workspace-template"
+      },
+      "last_reviewed": "2026-09-25",
+      "criticality": "alta",
+      "protection": [
+        "sem-arquivamento-automatico",
+        "mudanca-canonica-exige-autorizacao"
+      ],
+      "status": "ativa",
+      "related_evaluations": [
+        "facts-vs-reports",
+        "owners-deadlines-not-invented",
+        "historical-instructions-no-authority"
+      ]
+    },
+    {
+      "name": "ws-registrar-sessao",
+      "purpose": "Registrar checkpoint, atualizar memória e permitir continuidade verificável.",
+      "triggers": [
+        "registrar sessão",
+        "criar checkpoint",
+        "preparar troca de agente ou computador"
+      ],
+      "canonical_source": "skills/ws-registrar-sessao/SKILL.md",
+      "adapters": [
+        ".claude/skills/ws-registrar-sessao/SKILL.md"
+      ],
+      "workflow": "workflows/registrar-sessao.md",
+      "templates": [
+        "templates/sessao.md"
+      ],
+      "references": [
+        "CLAUDE.md",
+        "START.md",
+        "memory/MEMORY.md"
+      ],
+      "origin": {
+        "kind": "modelo",
+        "source": "workspace-template"
+      },
+      "last_reviewed": "2026-09-25",
+      "criticality": "alta",
+      "protection": [
+        "sem-arquivamento-automatico",
+        "mudanca-canonica-exige-autorizacao"
+      ],
+      "status": "ativa",
+      "related_evaluations": [
+        "checkpoint-correct-destination",
+        "state-evidence-separated"
+      ]
+    },
+    {
+      "name": "ws-retomar",
+      "purpose": "Retomar um assunto com leitura seletiva da memória e das fontes necessárias.",
+      "triggers": [
+        "retomar assunto",
+        "continuar sessão",
+        "mostrar próximo passo"
+      ],
+      "canonical_source": "skills/ws-retomar/SKILL.md",
+      "adapters": [
+        ".claude/skills/ws-retomar/SKILL.md"
+      ],
+      "workflow": "workflows/retomar.md",
+      "templates": [],
+      "references": [
+        "CLAUDE.md",
+        "START.md",
+        "memory/MEMORY.md",
+        "repos.yaml"
+      ],
+      "origin": {
+        "kind": "modelo",
+        "source": "workspace-template"
+      },
+      "last_reviewed": "2026-09-25",
+      "criticality": "alta",
+      "protection": [
+        "sem-arquivamento-automatico",
+        "mudanca-canonica-exige-autorizacao"
+      ],
+      "status": "ativa",
+      "related_evaluations": [
+        "selective-resume",
+        "historical-instructions-no-authority"
+      ]
+    },
+    {
+      "name": "ws-revisar-contexto",
+      "purpose": "Revisar contexto, estados, duplicações e divergências sem apagar histórico útil.",
+      "triggers": [
+        "revisar contexto",
+        "auditar estado",
+        "limpar duplicações",
+        "reconciliar divergências"
+      ],
+      "canonical_source": "skills/ws-revisar-contexto/SKILL.md",
+      "adapters": [
+        ".claude/skills/ws-revisar-contexto/SKILL.md"
+      ],
+      "workflow": "workflows/revisar-contexto.md",
+      "templates": [],
+      "references": [
+        "CLAUDE.md",
+        "START.md",
+        "knowledge/INDEX.md"
+      ],
+      "origin": {
+        "kind": "modelo",
+        "source": "workspace-template"
+      },
+      "last_reviewed": "2026-09-25",
+      "criticality": "alta",
+      "protection": [
+        "sem-arquivamento-automatico",
+        "mudanca-canonica-exige-autorizacao"
+      ],
+      "status": "ativa",
+      "related_evaluations": [
+        "facts-vs-reports",
+        "state-evidence-separated",
+        "authorization-bounds"
+      ]
+    },
+    {
+      "name": "ws-abrir-issue",
+      "purpose": "Transformar um pedido em issue com criterios de aceite, implementar em worktree, testar e abrir PR sem mergear nem publicar, perguntando so o que a politica manda.",
+      "triggers": [
+        "abrir issue",
+        "tratar issue",
+        "resolver issue de um projeto"
+      ],
+      "canonical_source": "skills/ws-abrir-issue/SKILL.md",
+      "adapters": [
+        ".claude/skills/ws-abrir-issue/SKILL.md"
+      ],
+      "workflow": "skills/ws-abrir-issue/SKILL.md",
+      "templates": [],
+      "references": [
+        "CLAUDE.md",
+        "docs/politica-de-perguntas.md",
+        "repos.yaml"
+      ],
+      "origin": {
+        "kind": "modelo",
+        "source": "workspace-template"
+      },
+      "last_reviewed": "2026-11-11",
+      "criticality": "media",
+      "protection": [
+        "sem-arquivamento-automatico",
+        "mudanca-canonica-exige-autorizacao"
+      ],
+      "status": "experimental",
+      "related_evaluations": [
+        "authorization-bounds"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+.local/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+**/node_modules/
+*.pem
+*.key
+*.log
+.claude/settings.local.json
+desktop.ini
+/HANDOFF.md

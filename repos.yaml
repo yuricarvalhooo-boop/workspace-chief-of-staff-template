@@ -1,0 +1,10 @@
+{
+  "workspace": {
+    "name": "Workspace",
+    "phase": "modelo",
+    "created_at": "AAAA-MM-DD",
+    "git_visibility": "private",
+    "git_default_branch": "main"
+  },
+  "projects": []
+}

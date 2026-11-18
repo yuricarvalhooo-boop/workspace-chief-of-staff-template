@@ -26,6 +26,12 @@ Este é o centro de contexto, conhecimento e coordenação do dono, usado localm
 - Preserve explicações pedidas, cautelas de segurança, ambiguidades reais e formatos solicitados. Em erros, informe primeiro o sintoma confirmado; trate a causa como fato somente com evidência. Caso contrário, rotule-a como hipótese e proponha a menor verificação ou correção segura.
 
 
+## Base compartilhada de desenvolvimento — H.O.M.E.R.
+
+Para demandas de desenvolvimento, consulte [H.O.M.E.R.](knowledge/H.O.M.E.R/INDEX.md). Use conhecimento geral; acrescente Lovable quando a plataforma fizer parte da tarefa e Mercado Livre quando houver integração com esse provedor. Leia o guia da categoria e busque poucos trechos, sem carregar o acervo completo.
+
+`python scripts/search.py "termos" --domain geral|lovable|mercado-livre --limit 5` filtra a categoria. Referências técnicas históricas precisam de verificação atual antes de aplicação. Nomes de empresa e números nos exemplos são ilustrativos.
+
 ## Documentar e continuar de outra máquina
 
 - Ao concluir um trabalho com informação durável, atualizar um compromisso ou preparar a troca de máquina: atualize a memória do assunto e registre um checkpoint curto usando [o roteiro de continuidade](workflows/registrar-sessao.md).

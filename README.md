@@ -20,11 +20,12 @@ Este repositório contém **só a estrutura e o aprendizado geral**, sem dados d
 - `docs/`: política de perguntas, handoff, guia de adaptação.
 - `scripts/`: busca local, handoff, mapa do workspace, hook que bloqueia ações perigosas, hook pre-commit, avaliações de comportamento. Python 3.10+, nenhum serviço extra.
 - `evals/`: avaliações que conferem se as regras continuam escritas como devem.
-- `knowledge/`, `processes/`, `people/`, `meetings/`, `projects/`: vazios, para o seu conteúdo.
+- `knowledge/H.O.M.E.R/`: base de conhecimento de desenvolvimento com IA (método em 4 fases, spec, pitfalls, Lovable, Mercado Livre), adquirida em um curso e adaptada; uso privado, respeite os termos do curso.
+- `knowledge/` (resto), `processes/`, `people/`, `meetings/`, `projects/`: vazios, para o seu conteúdo.
 
 ## O que NÃO está aqui de propósito
 
-Dados e documentos de projetos, pessoas, empresas, reuniões e decisões do dono original; credenciais; scripts de automação específicos (servidor, mensageria, relatórios); skills de terceiros (instale você mesmo das fontes originais, respeitando as licenças); a base H.O.M.E.R., que veio de terceiros.
+Dados e documentos de projetos, pessoas, empresas, reuniões e decisões do dono original; credenciais; scripts de automação específicos (servidor, mensageria, relatórios); skills de terceiros (instale você mesmo das fontes originais, respeitando as licenças).
 
 ## Testes
 
